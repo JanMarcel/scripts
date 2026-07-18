@@ -41,13 +41,13 @@ def main():
     parser.add_argument(
         "-f", "--folder-factor", 
         type=float, 
-        default=2.0,
+        default=1,
         help="Reduction factor for 'Hoehenlinie' folders. Must be between 1.5 and 4.0 (default: 2.0)"
     )
     parser.add_argument(
         "-i", "--image-factor", 
         type=float, 
-        default=4.0,
+        default=1,
         help="Reduction factor for image sequences inside kept folders. Must be between 2.0 and 10.0 (default: 4.0)"
     )
     
@@ -61,11 +61,11 @@ def main():
     args = parser.parse_args()
 
     # --- Argument Validation ---
-    if not (1.5 <= args.folder_factor <= 4.0):
-        parser.error(f"Folder reduction factor must be between 1.5 and 4.0. Got {args.folder_factor}")
+    if not (1.0 <= args.folder_factor <= 4.0):
+        parser.error(f"Folder reduction factor must be between 1.0 and 4.0. Got {args.folder_factor}")
         
-    if not (2.0 <= args.image_factor <= 10.0):
-        parser.error(f"Image reduction factor must be between 2.0 and 10.0. Got {args.image_factor}")
+    if not (1.0 <= args.image_factor <= 10.0):
+        parser.error(f"Image reduction factor must be between 1.0 and 10.0. Got {args.image_factor}")
 
     target_dir = args.target_dir
     folder_factor = args.folder_factor
