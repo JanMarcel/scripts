@@ -55,7 +55,7 @@ def parse_and_plot_logs(log_path, output_image_path, hide_plot=False):
     if any(d > 0 for d in depth_losses):
         plt.plot(iterations, depth_losses, label="Depth Loss", color="orange", alpha=0.8, linestyle="--")
 
-    plt.title("Neural Network Training Progress", fontsize=14, fontweight="bold")
+    plt.title("Gaussian Splatting Training Loss", fontsize=14, fontweight="bold")
     plt.xlabel("Iterations", fontsize=12)
     plt.ylabel("Loss Value", fontsize=12)
     plt.grid(True, linestyle=":", alpha=0.6)
