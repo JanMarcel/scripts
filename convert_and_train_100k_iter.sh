@@ -22,4 +22,15 @@ fi
 
 mkdir -p $1/output
 # takes dataset in $1 and uses original image sizes (-r 1)
-python $gaussian_splatting_root/train.py -s $1 -m $1/output -r 1 --iterations 100000 --test_iterations 7000 30000 40000 50000 60000 70000 80000 90000 100000 --save_iterations 7000 30000 40000 50000 60000 70000 80000 90000 100000 > $1/train.log 2>&1
+python $gaussian_splatting_root/train.py \
+        -s $1           \
+        -m $1/output    \
+        -r 1            \
+        --iterations 100000 \
+        --test_iterations 7000 30000 40000 50000 60000 70000 80000 90000 100000 \
+        --save_iterations 7000 30000 40000 50000 60000 70000 80000 90000 100000 \
+        --checkpoint_iterations 100000 \
+        > $1/train.log 2>&1
+
+# make png of training loss
+python plot_loss.py $1/train.log
