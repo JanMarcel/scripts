@@ -21,5 +21,13 @@ else
 fi
 
 mkdir -p $1/output
-# takes dataset in $1 and uses original image sizes (-r 1)
-python $gaussian_splatting_root/train.py -s $1 -m $1/output -r 1 > $1/train.log 2>&1
+
+if [[ "$2" != "--skip_training" ]]; then
+    # takes dataset in $1 and uses original image sizes (-r 1)
+    python $gaussian_splatting_root/train.py -s $1 -m $1/output -r 1 > $1/train.log 2>&1
+else
+    echo "Skipping training process."
+    echo "Skipping training process. Flag '--skip_training' was provided" > $1/output/info.log
+fi
+
+echo "Finished!"
