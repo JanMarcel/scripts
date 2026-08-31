@@ -1,6 +1,6 @@
 #!/bin/bash
 # export CUDA_VISIBLE_DEVICES=0,2   # would hide GPU with index 1
-# export CUDA_VISIBLE_DEVICES=1 # if GPU 0 is occupied
+export CUDA_VISIBLE_DEVICES=1 # if GPU 0 is occupied
 
 if [[ -z "$1" ]]; then
     echo -e "\nPlease provide the path to the root of the dataset folder.\n"
@@ -13,6 +13,11 @@ if [[ -z "$1" ]]; then
 fi
 
 gaussian_splatting_root="/home/ja122sch/Documents/Teamprojekt/networks/gaussian-splatting"
+if [ ! -d "$gaussian_splatting_root" ]; then
+  echo "You have to set the gaussian_splatting_root variable to the path of the gaussian-splatting repository."
+  echo "You can do this in the following file: <this_git_repo>/convert_and_train_100k_iter.sh"
+  exit 1
+fi
 
 if [[ "$2" != "--skip_colmap" ]]; then
     python $gaussian_splatting_root/convert.py -s $1 > $1/convert.log 2>&1
