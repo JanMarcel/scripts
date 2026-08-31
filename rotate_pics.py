@@ -62,9 +62,7 @@ def parse_args():
     )
 
     parser.add_argument(
-        "-s",
-        "--source",
-        required=True,
+        "source",
         help="Source folder or glob pattern containing images "
              "(e.g. './images/*.png')"
     )

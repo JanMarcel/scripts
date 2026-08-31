@@ -42,13 +42,13 @@ def main():
         "-f", "--folder-factor", 
         type=float, 
         default=1,
-        help="Reduction factor for 'Hoehenlinie' folders. Must be between 1.5 and 4.0 (default: 2.0)"
+        help="Reduction factor for 'Hoehenlinie' folders. Must be between 1.0 and 4.0 (default: 1.0)"
     )
     parser.add_argument(
         "-i", "--image-factor", 
         type=float, 
         default=1,
-        help="Reduction factor for image sequences inside kept folders. Must be between 2.0 and 10.0 (default: 4.0)"
+        help="Reduction factor for image sequences inside kept folders. Must be between 1.0 and 10.0 (default: 1.0)"
     )
     
     # Safety flag
@@ -83,8 +83,9 @@ def main():
     ])
     
     # 2. Filter folders based on rules
-    protected_folders = [f for f in all_subfolders if not f.startswith("Hoehenlinie")]
-    reducible_folders = [f for f in all_subfolders if f.startswith("Hoehenlinie")]
+    NONPROTECTED_FOLDERS_SUBNAME = "Hoehenlinie"
+    protected_folders = [f for f in all_subfolders if not NONPROTECTED_FOLDERS_SUBNAME in f]
+    reducible_folders = [f for f in all_subfolders if NONPROTECTED_FOLDERS_SUBNAME in f]
     
     print(f"Total folders found: {len(all_subfolders)}")
     print(f"Protected folders (keeping all): {len(protected_folders)}")
