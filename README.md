@@ -2,11 +2,18 @@
 
 ## Overview
 
-This script is the main end-to-end pipeline for the Gaussian Splatting workflow in this repo. It prepares a raw dataset, cleans and organizes the images, converts the data for training, runs a 100k-iteration Gaussian Splatting training job, and writes the output plus loss log.
+This script is the main end-to-end pipeline for the Gaussian Splatting workflow in this [https://github.com/graphdeco-inria/gaussian-splatting] repo. It prepares a raw dataset, cleans and organizes the images, converts the data for training, runs a 100k-iteration Gaussian Splatting training job, and writes the output plus loss log.
 
 ---
 
 ## Command usage
+
+Before running the shell script, you first must declare, where you have cloned the Gaussian splatting git repo in the shell script *convert_and_train_100k_iter.sh* on line 53:
+
+```bash
+gaussian_splatting_root="/path/to/your/git-repo/gaussian-splatting" 
+# e.g. /home/myaccount/networks/gaussian-splatting
+```
 
 ```bash
 bash convert_and_train_100k_iter.sh <unzipped_pictures_folder> [--skip_colmap]
@@ -33,13 +40,11 @@ It processes data under:
 
 and saves logs/output in there.
 
-The final output consists of the following:
-- output/point_cloud/*: output PLY at different stages of training (can be customized in the .sh file)
-- output/input.ply: input sparse PLY from COLMAP
-- *.log: logs of COLMAP conversion and training
-- train_loss.png: shows the loss with respect to time
+There exist also two more versions of this script:
+- *convert_and_train_original*.sh: 30k iterations are trained. This is the original iterations from the Gaussian splatting repo
+- *convert_and_train_5m_iter*.sh : 5 million iterations are trained. Although the results will probably not be any better.
 
-There exists also a version of this script, where 5 Million iterations are trained (convert_and_train_5m_iter.sh). Although the results will probably not be any better.
+The usage is exactly the same as with *convert_and_train_100k_iter.sh*.
 
 ---
 
