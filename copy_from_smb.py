@@ -22,7 +22,7 @@ def main():
             
     smbclient.ClientConfig(username=username, password=password)
 
-    zip_file = r"images_360deg_heights.zip"
+    zip_file = r"images_360deg_poses.zip"
     folder = r"Dobot_3D_Scan"
     remote = os.path.join(r"\\ei-data.ei.htwg-konstanz.de\ei-alle", folder, zip_file)
     local = os.path.join(".", zip_file)
