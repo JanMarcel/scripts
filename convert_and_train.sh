@@ -12,7 +12,7 @@ if [[ -z "$1" ]]; then
     exit 1
 fi
 
-gaussian_splatting_root="/home/ja122sch/Documents/Teamprojekt/networks/gaussian-splatting"
+gaussian_splatting_root="/path/to/your/git-repo/gaussian-splatting" # e.g. /home/myaccount/networks/gaussian-splatting
 
 if [[ "$2" != "--skip_colmap" ]]; then
     python $gaussian_splatting_root/convert.py -s $1 > $1/convert.log 2>&1

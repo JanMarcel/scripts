@@ -50,7 +50,7 @@ mv "$COLMAP_DATA_ROOT"/*.png "$COLMAP_DATA_ROOT/input/"
 
 ## End data preprocessing
 
-gaussian_splatting_root="/home/ja122sch/Documents/Teamprojekt/networks/gaussian-splatting"
+gaussian_splatting_root="/path/to/your/git-repo/gaussian-splatting" # e.g. /home/myaccount/networks/gaussian-splatting
 if [ ! -d "$gaussian_splatting_root" ]; then
   echo "You have to set the gaussian_splatting_root variable to the path of the gaussian-splatting repository."
   echo "You can do this in the following file: <this_git_repo>/convert_and_train_100k_iter.sh"

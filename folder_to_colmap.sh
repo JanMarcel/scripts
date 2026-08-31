@@ -44,7 +44,7 @@ else
 fi
 
 # ## Step 3: train neural network with COLMAP dataset
-# cd /home/ja122sch/Documents/Teamprojekt/networks/gaussian-splatting
+# cd /path/to/your/git-repo/gaussian-splatting
 
 # mkdir -p $dataset_train_root/output
 # python train.py -s $dataset_train_root -m $dataset_train_root/output > $colmap_dataset_abspath/train.log 2>&1
