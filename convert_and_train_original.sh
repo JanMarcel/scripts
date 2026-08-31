@@ -71,14 +71,13 @@ mkdir -p $COLMAP_DATA_ROOT/output
 
 # Start training
 # takes dataset in $COLMAP_DATA_ROOT and uses original image sizes (-r 1)
-python $gaussian_splatting_root/train.py \
-        -s $COLMAP_DATA_ROOT           \
-        -m $COLMAP_DATA_ROOT/output    \
-        -r 1            \
-        --iterations 5000000 \
-        --test_iterations 7000 30000 100000 500000 1000000 2000000 3000000 4000000 5000000 \
-        --save_iterations 7000 30000 100000 500000 1000000 2000000 3000000 4000000 5000000 \
-        --checkpoint_iterations 5000000 \
+# with no parameters, the train.py script will run for 30k iterations 
+# and have checkpoints at 7k, 30k
+python $gaussian_splatting_root/train.py    \
+        -s $COLMAP_DATA_ROOT                \
+        -m $COLMAP_DATA_ROOT/output         \
+        -r 1                                \
+        --checkpoint_iterations 30000       \
         > $COLMAP_DATA_ROOT/train.log 2>&1
 
 # make png of training loss
