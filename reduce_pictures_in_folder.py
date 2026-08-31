@@ -1,7 +1,8 @@
 import os
 import argparse
+from typing import Literal
 
-def reduce_images(folder_path, factor):
+def reduce_images(folder_path, factor, execute: Literal[True, False]):
     if not os.path.isdir(folder_path):
         print(f"Error: '{folder_path}' is not a valid directory.")
         return
@@ -36,8 +37,12 @@ def reduce_images(folder_path, factor):
         print("Nothing to delete (factor is likely 1 or folder has too few images).")
         return
 
-    # Prompt user for confirmation
-    confirm = input(f"\nAre you sure you want to permanently delete these {len(images_to_delete)} images? (y/N): ")
+    # Prompt user for confirmation if not executing automatically
+    if not execute:
+        confirm = input(f"\nAre you sure you want to permanently delete these {len(images_to_delete)} images? (y/N): ")
+    else:
+        confirm = 'y'  # Automatically confirm if execute is True
+    
     if confirm.lower() != 'y':
         print("Operation cancelled. No files were deleted.")
         return
@@ -76,5 +81,13 @@ if __name__ == "__main__":
         help="Reduction factor f (integer between 1 and 50)"
     )
     
+    parser.add_argument(
+        "--execute",
+        type=bool,
+        nargs='?',
+        const=True,
+        default=False
+    )
+    
     args = parser.parse_args()
-    reduce_images(args.folder, args.factor)
+    reduce_images(args.folder, args.factor, args.execute)
